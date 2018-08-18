@@ -8,7 +8,7 @@ namespace WebAddressbookTests
         [Test]
         public void GroupModificationTest()
         {
-            GroupData group = new GroupData("new", "new", "new");
+            GroupData group = new GroupData("new",null, null);
             app.GroupHelper.Modify(1, group);
         }       
     }

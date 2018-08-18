@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="model\AccountData.cs" />
     <Compile Include="appmanager\ApplicationManager.cs" />
+    <Compile Include="tests\TestSuiteFixture.cs" />
     <Compile Include="tests\GroupCreationTests.cs" />
     <Compile Include="model\GroupData.cs" />
     <Compile Include="tests\GroupDeletionTests.cs" />
