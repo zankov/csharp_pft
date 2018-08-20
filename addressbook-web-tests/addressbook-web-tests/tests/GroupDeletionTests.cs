@@ -3,7 +3,7 @@
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupDeletionTests : TestBase
+    public class GroupDeletionTests : SessionBase
     {
         [Test]
         public void TheGroupDeletionTest()

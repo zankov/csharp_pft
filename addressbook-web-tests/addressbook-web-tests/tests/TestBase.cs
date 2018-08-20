@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium;
 
 namespace WebAddressbookTests
 {
@@ -6,7 +7,7 @@ namespace WebAddressbookTests
     {
         public ApplicationManager app;
         [SetUp]
-        public void SetupTest()
+        public void SetupApplicationManager()
         {
             app = ApplicationManager.GetInstance();
         }
