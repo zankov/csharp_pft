@@ -9,6 +9,7 @@ namespace WebAddressbookTests
     {
         private IWebDriver driver;
         private string baseURL;
+        public ContactHelper contactHelper;
         public GroupHelper groupHelper;
         public NavigationHelper navigationHelper;
         public SessionHelper sessionHelper;
@@ -17,6 +18,7 @@ namespace WebAddressbookTests
         {
             driver = new FirefoxDriver();
             baseURL = "http://localhost:8088";
+            contactHelper = new ContactHelper(this);
             groupHelper = new GroupHelper(this);
             navigationHelper = new NavigationHelper(this);
             sessionHelper = new SessionHelper(this);           
@@ -54,6 +56,13 @@ namespace WebAddressbookTests
             get
             {
                 return baseURL;
+            }
+        }
+        public ContactHelper ContactHelper
+        {
+            get
+            {
+                return contactHelper;
             }
         }
         public GroupHelper GroupHelper

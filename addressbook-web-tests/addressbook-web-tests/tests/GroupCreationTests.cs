@@ -9,29 +9,18 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreationTest()
         {
-            GroupData group = new GroupData("test", "test", "test");
+            GroupData group = new GroupData("test");
             List<GroupData> oldGroups = app.GroupHelper.GetGroupList();
             app.GroupHelper.Create(group);
             Assert.AreEqual(oldGroups.Count + 1, app.GroupHelper.GetGroupCount());
             List<GroupData> newGroups = app.GroupHelper.GetGroupList();
-            oldGroups.Add(new GroupData("test", "test", "test"));
+            oldGroups.Add(new GroupData(group.Name, group.Header, group.Footer));
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
         }
-        [Test]
-        public void EmptyGroupCreationTest()
-        {
-            GroupData group = new GroupData("");
-            List<GroupData> oldGroups = app.GroupHelper.GetGroupList();
-            app.GroupHelper.Create(group);
-            Assert.AreEqual(oldGroups.Count + 1, app.GroupHelper.GetGroupCount());
-            List<GroupData> newGroups = app.GroupHelper.GetGroupList();
-            oldGroups.Add(new GroupData(""));
-            oldGroups.Sort();
-            newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);
-        }
+        //[Test, TestCaseSource("RandomGroupDataProvider")]
+        //public void GroupCreationTest(GroupData group)
         [Test]
         public void BadNameGroupCreationTest()
         {
@@ -44,6 +33,20 @@ namespace WebAddressbookTests
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
+        }
+        public static IEnumerable<GroupData> RandomGroupDataProvider()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            
+            for (int i = 0; i < 5; i++)
+            {
+                groups.Add(new GroupData(GenerateRandomString(30))
+                {
+                    Header = GenerateRandomString(100),
+                    Footer = GenerateRandomString(100)
+                });
+            }
+            return groups;
         }
     }
 }
