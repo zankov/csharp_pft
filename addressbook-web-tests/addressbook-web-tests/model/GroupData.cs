@@ -4,7 +4,10 @@ namespace WebAddressbookTests
 {
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
-
+        public GroupData()
+        {
+            
+        }
         public GroupData(string name)
         {
             Name = name;
