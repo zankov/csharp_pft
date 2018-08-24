@@ -3,20 +3,22 @@ using Newtonsoft.Json;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
+using System;
 
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : SessionBase
+    public class GroupCreationTests : GroupTestBase
     {
         [Test, TestCaseSource("GroupDataFromExcelFile")]
         public void GroupCreationTest(GroupData group)
         {
-            List<GroupData> oldGroups = app.GroupHelper.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAll();
             app.GroupHelper.Create(group);
             Assert.AreEqual(oldGroups.Count + 1, app.GroupHelper.GetGroupCount());
-            List<GroupData> newGroups = app.GroupHelper.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAll();
             oldGroups.Add(new GroupData(group.Name, group.Header, group.Footer));
             oldGroups.Sort();
             newGroups.Sort();
@@ -34,6 +36,14 @@ namespace WebAddressbookTests
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
+        }
+        [Test]
+        public void TestDBConnectivity()
+        {
+            foreach (ContactData contact in GroupData.GetAll()[0].GetContacts())
+            {
+                System.Console.Out.WriteLine(contact.Deprecated);
+            }
         }
         public static IEnumerable<GroupData> RandomGroupDataProvider()
         {
